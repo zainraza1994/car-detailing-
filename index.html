@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drip Detailing — Mobile Car Detailing, North West UK</title>
+  <meta name="description" content="Drip Detailing — professional mobile car detailing across the North West, UK. Bring back the shine without breaking the bank. From £15. We come to you." />
+  <meta property="og:title" content="Drip Detailing — Bring Back The Shine" />
+  <meta property="og:description" content="Professional mobile car detailing at prices that make sense. Serving the North West, UK." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3C16 3 7 14 7 21a9 9 0 0 0 18 0C25 14 16 3 16 3Z' fill='%23b4f000'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Loader -->
+  <div id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <div class="loader__logo">DRIP<span class="loader__drop">.</span></div>
+      <div class="loader__bar"><div class="loader__fill"></div></div>
+      <div class="loader__tag">bringing back the shine…</div>
+    </div>
+  </div>
+
+  <!-- Custom cursor (desktop only) -->
+  <div id="cursor" aria-hidden="true"></div>
+
+  <!-- Fixed WebGL stage behind everything -->
+  <div id="stage">
+    <canvas id="scene"></canvas>
+  </div>
+
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="#hero">DRIP<span>.</span><em>detailing</em></a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#deals">Deals</a>
+      <a href="#why">Why Drip</a>
+    </nav>
+    <a class="btn btn--solid nav__cta" href="#book">Book now</a>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <p class="hero__kicker" data-reveal>Mobile car detailing — North West, UK</p>
+      <h1 class="hero__title">
+        <span class="hero__line"><span>DRIP</span></span>
+        <span class="hero__line hero__line--outline"><span>DETAILING</span></span>
+      </h1>
+      <p class="hero__tag" data-reveal>Bring back <em>the shine</em> — we come to you.</p>
+      <div class="hero__scroll" aria-hidden="true">
+        <span class="hero__scroll-dot"></span>
+        scroll to watch it transform
+      </div>
+    </section>
+
+    <!-- TRANSFORMATION STORY (pinned) -->
+    <section class="story" id="story" aria-label="The Drip process">
+      <div class="story__pin">
+        <div class="story__stages">
+          <article class="story__stage" data-stage="0">
+            <span class="story__num">01</span>
+            <h2>Foam<br/>Wash</h2>
+            <p>Thick snow foam lifts the grime before we ever touch the paint. Safe hand wash, rinse &amp; dry.</p>
+          </article>
+          <article class="story__stage" data-stage="1">
+            <span class="story__num">02</span>
+            <h2>Deep<br/>Interior</h2>
+            <p>Seats shampooed, carpets extracted, dash, trims &amp; vents detailed. Odours gone.</p>
+          </article>
+          <article class="story__stage" data-stage="2">
+            <span class="story__num">03</span>
+            <h2>Polish<br/>&amp; Dress</h2>
+            <p>Paint polished, tyres dressed, glass cleaned to an invisible finish.</p>
+          </article>
+          <article class="story__stage" data-stage="3">
+            <span class="story__num">04</span>
+            <h2>The<br/>Shine</h2>
+            <p>Sealed, glossed, dripping. A showroom finish — on your driveway.</p>
+          </article>
+        </div>
+        <div class="story__progress" aria-hidden="true">
+          <span class="story__progress-fill"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services section" id="services">
+      <header class="section__head">
+        <span class="section__num" data-reveal>01</span>
+        <h2 class="section__title" data-reveal>Services <em>&amp;</em> Prices</h2>
+        <p class="section__sub" data-reveal>Professional detailing at prices that make sense.</p>
+      </header>
+
+      <div class="services__grid">
+        <article class="card" data-reveal>
+          <h3>Exterior Wash</h3>
+          <ul>
+            <li>Foam wash</li><li>Hand wash</li><li>Rinse &amp; dry</li><li>Tyre shine</li><li>Windows cleaned</li>
+          </ul>
+          <div class="card__price"><span>from</span>£15</div>
+        </article>
+
+        <article class="card" data-reveal>
+          <h3>Inside + Outside</h3>
+          <ul>
+            <li>Exterior wash</li><li>Interior vacuum</li><li>Dash &amp; surfaces</li><li>Windows cleaned</li><li>Tyre shine</li>
+          </ul>
+          <div class="card__price"><span>from</span>£30</div>
+        </article>
+
+        <article class="card card--popular" data-reveal>
+          <span class="card__badge">Most popular</span>
+          <h3>Full Detail</h3>
+          <ul>
+            <li>Exterior wash</li><li>Interior deep clean</li><li>Vacuum &amp; shampoo</li><li>Dash, trims &amp; vents</li><li>Windows cleaned</li><li>Tyre shine</li>
+          </ul>
+          <div class="card__price"><span>from</span>£50–100</div>
+        </article>
+
+        <article class="card" data-reveal>
+          <h3>Deep Interior</h3>
+          <ul>
+            <li>Seats shampooed</li><li>Deep vacuum</li><li>Carpets cleaned</li><li>Trims &amp; panels</li><li>Odour removal</li>
+          </ul>
+          <div class="card__price"><span>from</span>£30</div>
+        </article>
+
+        <article class="card" data-reveal>
+          <h3>Monthly Maintenance</h3>
+          <ul>
+            <li>Exterior wash</li><li>Interior tidy</li><li>Maintain that shine</li><li>Priority booking</li>
+          </ul>
+          <div class="card__price"><span>from</span>£40</div>
+        </article>
+      </div>
+
+      <p class="services__note" data-reveal>* Prices may vary depending on the size of the vehicle.</p>
+    </section>
+
+    <!-- DEALS -->
+    <section class="deals section" id="deals">
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span>10% off your first booking</span><i>✦</i>
+          <span>15% off weekly regulars</span><i>✦</i>
+          <span>£10 off — refer a friend</span><i>✦</i>
+          <span>10% off your first booking</span><i>✦</i>
+          <span>15% off weekly regulars</span><i>✦</i>
+          <span>£10 off — refer a friend</span><i>✦</i>
+        </div>
+      </div>
+
+      <header class="section__head">
+        <span class="section__num" data-reveal>02</span>
+        <h2 class="section__title" data-reveal>Special <em>Deals</em></h2>
+      </header>
+
+      <div class="deals__grid">
+        <article class="deal" data-reveal>
+          <span class="deal__value">10<i>%</i></span>
+          <h3>New customer</h3>
+          <p>Off your first booking — try us once, you'll see the difference.</p>
+        </article>
+        <article class="deal" data-reveal>
+          <span class="deal__value">15<i>%</i></span>
+          <h3>Weekly regular</h3>
+          <p>Book any detail every week and keep that drip on a discount.</p>
+        </article>
+        <article class="deal" data-reveal>
+          <span class="deal__value">£10</span>
+          <h3>Refer a friend</h3>
+          <p>You and your friend both get £10 off. Everybody shines.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- WHY DRIP -->
+    <section class="why section" id="why">
+      <header class="section__head">
+        <span class="section__num" data-reveal>03</span>
+        <h2 class="section__title" data-reveal>Why <em>Drip</em>?</h2>
+      </header>
+
+      <ul class="why__list">
+        <li data-reveal><strong>Mobile service</strong><span>We come to your home or workplace — driveway, car park, anywhere.</span></li>
+        <li data-reveal><strong>Premium products</strong><span>Professional-grade chemicals and equipment on every job.</span></li>
+        <li data-reveal><strong>Attention to detail</strong><span>Vents, trims, seals — the bits everyone else skips.</span></li>
+        <li data-reveal><strong>Satisfaction guaranteed</strong><span>Not happy? We'll make it right before we leave.</span></li>
+      </ul>
+
+      <p class="why__motto" data-reveal>We don't cut corners,<br/><em>we perfect them.</em></p>
+    </section>
+
+    <!-- BOOK -->
+    <section class="book section" id="book">
+      <h2 class="book__title" data-reveal>Ready to<br/><em>drip?</em></h2>
+      <p class="book__sub" data-reveal>DM us your car, your postcode and the service you want — we'll sort the rest.</p>
+      <div class="book__actions" data-reveal>
+        <a class="btn btn--solid btn--big" href="https://ig.me/m/mobile.dripdetailing" target="_blank" rel="noopener">
+          Book via Instagram DM
+        </a>
+        <a class="btn btn--ghost btn--big" href="https://wa.me/447000000000?text=Hi%20Drip%20Detailing%2C%20I%27d%20like%20to%20book%20a%20detail" target="_blank" rel="noopener">
+          WhatsApp us
+        </a>
+      </div>
+      <p class="book__area" data-reveal>Serving the North West, UK — we come to you.</p>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__brand">DRIP<span>.</span></div>
+    <div class="footer__links">
+      <a href="https://www.instagram.com/mobile.dripdetailing" target="_blank" rel="noopener">Instagram — @mobile.dripdetailing</a>
+      <a href="https://www.tiktok.com/@mobiledripdetailing" target="_blank" rel="noopener">TikTok — @mobiledripdetailing</a>
+    </div>
+    <p class="footer__small">
+      © <span id="year"></span> Drip Detailing · North West, UK ·
+      3D car model: Ferrari 458 Italia by <a href="https://sketchfab.com/vicent091036" target="_blank" rel="noopener">vicent091036</a> (CC&nbsp;BY)
+    </p>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
