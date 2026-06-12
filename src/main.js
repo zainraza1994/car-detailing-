@@ -169,3 +169,70 @@ if (finePointer && !reducedMotion) {
     gsap.set(card, { transformPerspective: 700 });
   });
 }
+
+/* ---------- Services carousel (mobile) ---------- */
+
+function initServicesCarousel() {
+  const mq = window.matchMedia('(max-width: 768px)');
+
+  let dots = null;
+  let observer = null;
+
+  function setup() {
+    const grid = document.querySelector('.services__grid');
+    const cards = [...grid.querySelectorAll('.card')];
+
+    // Inject dot container
+    dots = document.createElement('div');
+    dots.className = 'services__dots';
+    cards.forEach((card, i) => {
+      const btn = document.createElement('button');
+      btn.setAttribute('aria-label', `Go to ${card.querySelector('h3').textContent}`);
+      btn.setAttribute('aria-current', i === 0 ? 'true' : 'false');
+      btn.addEventListener('click', () => {
+        card.scrollIntoView({
+          behavior: reducedMotion ? 'instant' : 'smooth',
+          inline: 'center',
+        });
+      });
+      dots.appendChild(btn);
+    });
+    grid.after(dots);
+
+    // Keep active dot in sync with snapped card
+    observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const idx = cards.indexOf(entry.target);
+          [...dots.querySelectorAll('button')].forEach((btn, i) => {
+            btn.classList.toggle('active', i === idx);
+            btn.setAttribute('aria-current', i === idx ? 'true' : 'false');
+          });
+        });
+      },
+      { root: grid, threshold: 0.6 }
+    );
+    cards.forEach((card) => observer.observe(card));
+
+    // Scroll to Most Popular on load
+    const popular = grid.querySelector('.card--popular');
+    requestAnimationFrame(() => {
+      popular.scrollIntoView({ behavior: 'instant', inline: 'center' });
+    });
+  }
+
+  function teardown() {
+    if (dots) { dots.remove(); dots = null; }
+    if (observer) { observer.disconnect(); observer = null; }
+  }
+
+  if (mq.matches) setup();
+
+  mq.addEventListener('change', (e) => {
+    if (e.matches) setup();
+    else teardown();
+  });
+}
+
+initServicesCarousel();
