@@ -5,6 +5,10 @@ import { createScene } from './scene.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Don't refresh pin measurements when the mobile URL bar shows/hides —
+// that refresh mid-scroll is a visible jump on phones.
+ScrollTrigger.config({ ignoreMobileResize: true });
+
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
 const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -80,9 +84,9 @@ if (!reducedMotion) {
     scrollTrigger: {
       trigger: '#story',
       start: 'top top',
-      end: '+=320%',
+      end: '+=420%',
       pin: true,
-      scrub: 0.6,
+      scrub: 1.2,
       anticipatePin: 1,
       onUpdate(self) {
         if (sceneApi) sceneApi.setProgress(self.progress);
@@ -96,8 +100,13 @@ if (!reducedMotion) {
     if (i === 0) {
       storyTl.set(stage, { autoAlpha: 1 }, 0);
     } else {
-      storyTl.to(stages[i - 1], { autoAlpha: 0, y: -24, duration: 0.35 }, i - 0.35);
-      storyTl.fromTo(stage, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.35 }, i - 0.1);
+      storyTl.to(stages[i - 1], { autoAlpha: 0, y: -24, duration: 0.45, ease: 'power1.inOut' }, i - 0.45);
+      storyTl.fromTo(
+        stage,
+        { autoAlpha: 0, y: 24 },
+        { autoAlpha: 1, y: 0, duration: 0.45, ease: 'power1.inOut' },
+        i - 0.12
+      );
     }
   });
   storyTl.to({}, { duration: 0.5 }); // hold the final shine

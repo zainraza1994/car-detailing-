@@ -7,15 +7,17 @@ const BASE = import.meta.env.BASE_URL;
 
 // Paint states: dusty/neglected -> deep gloss with full clearcoat
 const PAINT_DIRTY = {
-  color: new THREE.Color(0x57534a),
+  color: new THREE.Color(0x47443d),
   roughness: 0.9,
   metalness: 0.05,
-  clearcoat: 0.0,
+  // Kept just above 0: clearcoat crossing zero changes the shader program
+  // hash (WebGLPrograms), forcing a mid-scroll recompile on first scroll.
+  clearcoat: 0.02,
   clearcoatRoughness: 0.6,
   envMapIntensity: 0.35,
 };
 const PAINT_CLEAN = {
-  color: new THREE.Color(0x0d1207),
+  color: new THREE.Color(0x0a0e06),
   roughness: 0.42,
   metalness: 1.0,
   clearcoat: 1.0,
@@ -143,15 +145,23 @@ export function createScene(canvas, { isMobile, reducedMotion, onLoadProgress })
     return Promise.reject(err);
   }
 
+  // Size from the canvas box (CSS-driven, 100lvh stage) rather than the
+  // window, so the mobile URL bar collapsing doesn't trigger a buffer resize.
+  const viewSize = () => ({
+    w: canvas.clientWidth || window.innerWidth,
+    h: canvas.clientHeight || window.innerHeight,
+  });
+  let { w: viewW, h: viewH } = viewSize();
+
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.75 : 2));
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setSize(viewW, viewH, false);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 0.95;
 
   const scene = new THREE.Scene();
   scene.fog = new THREE.Fog(0x0a0a0a, 10, 26);
 
-  const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 60);
+  const camera = new THREE.PerspectiveCamera(40, viewW / viewH, 0.1, 60);
 
   const pmrem = new THREE.PMREMGenerator(renderer);
   scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
@@ -240,6 +250,18 @@ export function createScene(canvas, { isMobile, reducedMotion, onLoadProgress })
         const glass = car.getObjectByName('glass');
         if (glass) glass.material = glassMaterial;
         carGroup.add(car, shadow);
+
+        // Warm up while the loader still covers the canvas: compile every
+        // shader (compile() ignores visibility/frustum) and draw one frame
+        // with the particles on so their programs + sprite texture are ready
+        // before the first scroll, instead of hitching mid-scroll on mobile.
+        renderer.compile(scene, camera);
+        foam.visible = true;
+        sparkles.visible = true;
+        renderer.render(scene, camera);
+        foam.visible = false;
+        sparkles.visible = false;
+
         resolve(api);
       },
       undefined,
@@ -296,7 +318,9 @@ export function createScene(canvas, { isMobile, reducedMotion, onLoadProgress })
     const dt = Math.min(clock.getDelta(), 0.05);
     const t = clock.elapsedTime;
 
-    state.progress += (state.target - state.progress) * Math.min(1, dt * 6);
+    // Exponential damping — frame-rate independent, so low-FPS frames glide
+    // instead of snapping to catch up. Lower rate = weightier, calmer motion.
+    state.progress += (state.target - state.progress) * (1 - Math.exp(-dt * 4));
     applyProgress(state.progress);
 
     if (!reducedMotion) {
@@ -326,9 +350,13 @@ export function createScene(canvas, { isMobile, reducedMotion, onLoadProgress })
   }
 
   function onResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    const { w, h } = viewSize();
+    if (w === viewW && h === viewH) return; // URL-bar show/hide, box unchanged
+    viewW = w;
+    viewH = h;
+    camera.aspect = w / h;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(w, h, false);
   }
   window.addEventListener('resize', onResize);
 

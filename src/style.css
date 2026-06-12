@@ -75,7 +75,11 @@ em { font-style: normal; }
 /* ---------- WebGL stage ---------- */
 
 #stage {
-  position: fixed; inset: 0; z-index: 0;
+  /* 100lvh (largest viewport) so the mobile URL bar collapsing on first
+     scroll doesn't resize the WebGL canvas mid-gesture. */
+  position: fixed; top: 0; left: 0; right: 0; z-index: 0;
+  height: 100vh;
+  height: 100lvh;
   background:
     radial-gradient(80% 60% at 50% 70%, rgba(180, 240, 0, 0.10), transparent 65%),
     radial-gradient(120% 90% at 50% 0%, #161811, var(--black) 70%);
