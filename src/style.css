@@ -362,6 +362,10 @@ main { position: relative; z-index: 1; }
     background: var(--lime);
     transform: scale(1.4);
   }
+  .services__dots button:focus-visible {
+    outline: 2px solid var(--lime);
+    outline-offset: 2px;
+  }
 }
 
 /* ---------- Deals ---------- */
