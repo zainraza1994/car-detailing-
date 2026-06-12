@@ -179,7 +179,9 @@ function initServicesCarousel() {
   let observer = null;
 
   function setup() {
+    if (dots) return; // prevent double-init
     const grid = document.querySelector('.services__grid');
+    if (!grid) return;
     const cards = [...grid.querySelectorAll('.card')];
 
     // Inject dot container
@@ -198,6 +200,7 @@ function initServicesCarousel() {
       dots.appendChild(btn);
     });
     grid.after(dots);
+    const btns = [...dots.querySelectorAll('button')];
 
     // Keep active dot in sync with snapped card
     observer = new IntersectionObserver(
@@ -205,7 +208,7 @@ function initServicesCarousel() {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
           const idx = cards.indexOf(entry.target);
-          [...dots.querySelectorAll('button')].forEach((btn, i) => {
+          btns.forEach((btn, i) => {
             btn.classList.toggle('active', i === idx);
             btn.setAttribute('aria-current', i === idx ? 'true' : 'false');
           });
@@ -217,9 +220,9 @@ function initServicesCarousel() {
 
     // Scroll to Most Popular on load
     const popular = grid.querySelector('.card--popular');
-    requestAnimationFrame(() => {
-      popular.scrollIntoView({ behavior: 'instant', inline: 'center' });
-    });
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      popular?.scrollIntoView({ behavior: 'instant', inline: 'center' });
+    }));
   }
 
   function teardown() {
