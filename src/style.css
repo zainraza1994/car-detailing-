@@ -320,6 +320,25 @@ main { position: relative; z-index: 1; }
   color: var(--grey); font-size: 0.85rem;
 }
 
+@media (max-width: 768px) {
+  .services__grid {
+    display: flex;
+    max-width: none;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin-inline: calc(-1 * var(--pad));
+    padding-inline: 7.5vw;
+    gap: 1rem;
+  }
+  .services__grid::-webkit-scrollbar { display: none; }
+  .card {
+    scroll-snap-align: center;
+    width: 85vw;
+    flex-shrink: 0;
+  }
+}
+
 /* ---------- Deals ---------- */
 
 .deals { border-top: 1px solid var(--line); overflow: hidden; }
