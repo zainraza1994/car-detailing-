@@ -18,7 +18,7 @@ Single-page marketing website for **Drip Detailing**, a mobile car detailing bus
 |------|-------------|
 | `index.html` | All HTML: copy, prices, services, booking links, social links |
 | `src/style.css` | All CSS — design tokens at the top, section styles below |
-| `src/main.js` | Loader boot, intro animation, nav scroll state, pinned story scroll, cursor, card tilt |
+| `src/main.js` | Loader boot, intro animation, nav scroll state, pinned story scroll, cursor, card tilt, services carousel (mobile) |
 | `src/scene.js` | three.js scene: 3D car load, camera keyframes, paint material transitions, foam + sparkle particles |
 | `vite.config.js` | Build config (base path for GitHub Pages) |
 
@@ -38,7 +38,7 @@ Single-page marketing website for **Drip Detailing**, a mobile car detailing bus
 ## Page sections (in DOM order)
 1. `#hero` — big title + scroll prompt
 2. `#story` — pinned scroll section, 4 stages (Foam Wash → Deep Interior → Polish & Dress → The Shine), drives the 3D car transformation
-3. `#services` — 5 service cards with prices
+3. `#services` — 5 service cards with prices; mobile (≤768px): horizontal scroll-snap carousel, dots injected by JS, auto-scrolls to Full Detail (Most Popular) card on load
 4. `#deals` — marquee + 3 deal cards (10% new customer, 15% weekly, £10 referral)
 5. `#why` — 4 bullet reasons
 6. `#book` — CTA with Instagram DM + WhatsApp links
