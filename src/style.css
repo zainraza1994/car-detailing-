@@ -332,7 +332,7 @@ main { position: relative; z-index: 1; }
     gap: 1rem;
   }
   .services__grid::-webkit-scrollbar { display: none; }
-  .card {
+  .services__grid .card {
     scroll-snap-align: center;
     width: 85vw;
     flex-shrink: 0;
