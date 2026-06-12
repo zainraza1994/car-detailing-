@@ -329,6 +329,7 @@ main { position: relative; z-index: 1; }
     scrollbar-width: none;
     margin-inline: calc(-1 * var(--pad));
     padding-inline: 7.5vw;
+    padding-top: 1.2rem;
     gap: 1rem;
   }
   .services__grid::-webkit-scrollbar { display: none; }
