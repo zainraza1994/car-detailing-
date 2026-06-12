@@ -194,6 +194,7 @@ function initServicesCarousel() {
       btn.addEventListener('click', () => {
         card.scrollIntoView({
           behavior: reducedMotion ? 'instant' : 'smooth',
+          block: 'nearest',
           inline: 'center',
         });
       });
@@ -221,7 +222,7 @@ function initServicesCarousel() {
     // Scroll to Most Popular on load
     const popular = grid.querySelector('.card--popular');
     requestAnimationFrame(() => requestAnimationFrame(() => {
-      popular?.scrollIntoView({ behavior: 'instant', inline: 'center' });
+      popular?.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'center' });
     }));
   }
 
