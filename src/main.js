@@ -219,10 +219,15 @@ function initServicesCarousel() {
     );
     cards.forEach((card) => observer.observe(card));
 
-    // Scroll to Most Popular on load
+    // Scroll to Most Popular on load — use scrollLeft directly so only the
+    // carousel track scrolls horizontally; scrollIntoView walks the full
+    // ancestor chain and causes the page to jump vertically on load.
     const popular = grid.querySelector('.card--popular');
     requestAnimationFrame(() => requestAnimationFrame(() => {
-      popular?.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'center' });
+      if (popular) {
+        grid.scrollLeft =
+          popular.offsetLeft - (grid.clientWidth - popular.clientWidth) / 2;
+      }
     }));
   }
 
