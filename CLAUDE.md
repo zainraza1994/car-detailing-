@@ -59,6 +59,13 @@ npm run preview  # serve dist/ locally
 ## Deployment
 GitHub Pages via `.github/workflows/` — push to `main` triggers a deploy.
 
+- **Live URL**: https://drip-detailing.co.uk
+- **Repo**: https://github.com/zainraza1994/car-detailing-
+- **GitHub Pages source**: GitHub Actions (not branch deploy)
+- Custom domain is set in `public/CNAME` (`drip-detailing.co.uk`) — do not delete this file
+- HTTPS enforced via Let's Encrypt (auto-renewed by GitHub)
+- DNS is managed on **Porkbun** — 4 A records + 4 AAAA records pointing to GitHub Pages IPs, plus a CNAME for `www` → `zainraza1994.github.io`
+
 ## Accessibility / compat notes
 - `prefers-reduced-motion` is honoured throughout — animations disabled, scene jumps to final state
 - WebGL failure falls back gracefully (`no-webgl` class on body)
