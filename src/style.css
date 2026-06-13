@@ -319,6 +319,12 @@ main { position: relative; z-index: 1; }
   max-width: 72rem; margin: 1.6rem auto 0;
   color: var(--grey); font-size: 0.85rem;
 }
+.services__cta {
+  text-align: center; margin-top: 3.5rem;
+}
+.services__cta p {
+  color: var(--grey); font-size: 1rem; margin-bottom: 1.4rem;
+}
 
 @media (max-width: 768px) {
   .services__grid {

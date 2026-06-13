@@ -38,16 +38,16 @@ Single-page marketing website for **Drip Detailing**, a mobile car detailing bus
 ## Page sections (in DOM order)
 1. `#hero` — big title + scroll prompt
 2. `#story` — pinned scroll section, 4 stages (Foam Wash → Deep Interior → Polish & Dress → The Shine), drives the 3D car transformation
-3. `#services` — 5 service cards with prices; mobile (≤768px): horizontal scroll-snap carousel, dots injected by JS, auto-scrolls to Full Detail (Most Popular) card on load
+3. `#services` — 5 service cards with prices; mobile (≤768px): horizontal scroll-snap carousel, dots injected by JS, auto-scrolls to Full Detail (Most Popular) card on load. Followed by a `.services__cta` mid-page CTA ("Get in touch") that links to Instagram DM.
 4. `#deals` — marquee + 3 deal cards (10% new customer, 15% weekly, £10 referral)
 5. `#why` — 4 bullet reasons
-6. `#book` — CTA with Instagram DM + WhatsApp links
+6. `#book` — bottom CTA section with Instagram DM button only (WhatsApp removed)
 7. Footer — brand, social links, credits
 
 ## Booking / contact info
-- **Instagram**: `https://ig.me/m/mobile.dripdetailing` / `@mobile.dripdetailing`
-- **WhatsApp**: placeholder `447000000000` — needs replacing with real number
+- **Instagram**: `https://ig.me/m/mobile.dripdetailing` / `@mobile.dripdetailing` — the only booking channel on the site
 - **TikTok**: `@mobiledripdetailing`
+- WhatsApp has been intentionally removed from the site
 
 ## Dev commands
 ```bash
